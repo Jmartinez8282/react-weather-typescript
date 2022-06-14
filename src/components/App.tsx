@@ -10,7 +10,7 @@ import { ErrorAlert, WarningAlert } from './Alerts';
 const App: FC = () => {
 
 
-  const [currentlocation, setCurrentLocation] = useState<WeatherLocation[]>([]);
+  const [currentlocation, setCurrentLocation] = useState<WeatherLocation | null>(null);
   const [locations, setLocations] = useState<WeatherLocation[]>([]);
   const [error, setError] = useState('');
   const [warning, setWarning] = useState('');
