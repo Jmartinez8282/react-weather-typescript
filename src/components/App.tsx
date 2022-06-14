@@ -10,7 +10,7 @@ import { ErrorAlert, WarningAlert } from './Alerts';
 const App: FC = () => {
 
 
-  const [currentlocation, setCurrentLocation] = useState<WeatherLocation | null>(null);
+  const [currentLocation, setCurrentLocation] = useState<WeatherLocation | null>(null);
   const [locations, setLocations] = useState<WeatherLocation[]>([]);
   const [error, setError] = useState('');
   const [warning, setWarning] = useState('');
@@ -48,7 +48,9 @@ const App: FC = () => {
           ? <div className={`alert alert-warning`}>{warning}</div>
           : null
       }
-<LocationTable locations={locations}/>      
+<LocationTable locations={locations}
+current={currentLocation}
+onSelect={location => setCurrentLocation(location)}/>      
 
 
 
