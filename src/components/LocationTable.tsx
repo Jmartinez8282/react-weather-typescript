@@ -3,11 +3,10 @@ import { WeatherLocation } from "../model/Weather";
 
 interface LocationTableProps {
   locations: WeatherLocation[];
-  current: WeatherLocation | null;
-  onSelect: (location: WeatherLocation) => void;
+  
 }
 
-export const LocationTable: FC<LocationTableProps> = ({locations, onSelect, current}) =>
+export const LocationTable: FC<LocationTableProps> = ({locations}) =>
   <div>
     <h2>Locations</h2>
     <table className="table table-hover">
@@ -17,12 +16,9 @@ export const LocationTable: FC<LocationTableProps> = ({locations, onSelect, curr
       </tr>
       </thead>
       <tbody>
-      {locations.map(location =>
-        <tr key={location.id} 
-        className={current?.id === location.id ? 'table-primary' : ''} 
-        onClick={() => {onSelect(location); console.log(location)}}>
-        <td>{location.name}</td></tr>
-      )}
+        {locations.map(location =>
+        <tr key={location.id}><td>{location.name}</td></tr>
+        )}
       </tbody>
     </table>
   </div>;
