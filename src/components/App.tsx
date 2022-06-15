@@ -6,6 +6,7 @@ import './App.css';
 import { WeatherLocation } from '../model/Weather';
 import { searchLocation } from '../services/WeatherService';
 import { ErrorAlert, WarningAlert } from './Alerts';
+import { WeatherSummary } from './WeatherSummary';
 
 const App: FC = () => {
 
@@ -50,23 +51,9 @@ const App: FC = () => {
       }
 <LocationTable locations={locations}
 current={currentLocation}
-onSelect={location => setCurrentLocation(location)}/>      
+onSelect={location => setCurrentLocation(location)}/>     
+<WeatherSummary location={currentLocation}/> 
 
-
-
-{/* <LocationSearch onSearch={addLocation}/>
-      {
-        error 
-        ? <div className={`alert alert-danger`}>(error)</div>
-        : null
-      }
-      {
-        warning
-        ? <div className={`alert alert-warning`}>(warning)</div>
-        : null
-      }
-      <LocationTable locations={locations}
-      /> */}
     </div>
   );
 }

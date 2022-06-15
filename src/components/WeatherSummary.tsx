@@ -25,7 +25,7 @@ export const WeatherSummary: FC<WeatherSummyProps> = ({location}) => {
                     readForecast(location.id)
                 ]);
                 setWeather(weather);
-                setForecast(forecast);
+                setForecast([forecast]);
             }
         })();
     },[location]);
@@ -33,28 +33,44 @@ export const WeatherSummary: FC<WeatherSummyProps> = ({location}) => {
     if(!location || !weather || !forecast) return null;
         
         return (
+
+
             <div>
 
                 <hr/>
 
-                <h3>{location.name}</h3>
-
+                <h2>{location.name}</h2>
                 <WeatherEntry weather={weather}/>
 
-                <h2>ForeCast</h2>
-
-                <div>
-                    <ol>
-                        {forecast.map(timePoint =>
-                            <li key={timePoint.dt}>
-                                <WeatherEntry weather={timePoint}/>
-                            </li>
-                            )}
-                    </ol>
-
-                </div>
-
             </div>
+
+    //         <div>
+
+    //             <hr/>
+
+    //             <h2>{location.name}</h2>
+
+    //             <WeatherEntry weather={weather}/>
+
+    //             <h2>ForeCast</h2>
+
+    //             <div>
+    //   <hr/>
+    //   <h2>{location.name}</h2>
+    //   <WeatherEntry weather={weather}/>
+
+    //   <h2>Forecast</h2>
+    //   <div>
+    //     <ol style={({whiteSpace: 'nowrap'})}>
+    //       {forecast.map(timePoint =>
+    //         <li key={timePoint.dt}>
+    //           <WeatherEntry weather={timePoint}/>
+    //         </li>
+    //       )}
+    //     </ol>
+    //   </div>
+    // </div>
+    //         </div>
         );
         
 
