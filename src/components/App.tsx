@@ -1,26 +1,22 @@
-
-import React, { FC, useState} from 'react';
-import { LocationSearch } from './LocationSearch';
-import { LocationTable } from './LocationTable';
-import './App.css';
-import { WeatherLocation } from '../model/Weather';
-import { searchLocation } from '../services/WeatherService';
-import { ErrorAlert, WarningAlert } from './Alerts';
-import { WeatherSummary } from './WeatherSummary';
+import React, { FC, useState } from "react";
+import { LocationSearch } from "./LocationSearch";
+import { LocationTable } from "./LocationTable";
+import "./App.css";
+import { WeatherLocation } from "../model/Weather";
+import { searchLocation } from "../services/WeatherService";
+import { ErrorAlert, WarningAlert } from "./Alerts";
+import { WeatherSummary } from "./WeatherSummary";
 
 const App: FC = () => {
-
-
-  const [currentLocation, setCurrentLocation] = useState<WeatherLocation | null>(null);
+  const [currentLocation, setCurrentLocation] =useState<WeatherLocation | null>(null);
   const [locations, setLocations] = useState<WeatherLocation[]>([]);
-  const [error, setError] = useState('');
-  const [warning, setWarning] = useState('');
- 
+  const [error, setError] = useState("");
+  const [warning, setWarning] = useState("");
 
   const resetAlerts = () => {
-    setError('')
-    setWarning('');
-  }
+    setError("");
+    setWarning("");
+  };
 
   let addLocation = async (term: string) => {
     resetAlerts();
@@ -28,7 +24,7 @@ const App: FC = () => {
 
     if (!location) {
       setError(`No location found called '${term}'`);
-    } else if (locations.find(item => item.id === location.id)) {
+    } else if (locations.find((item) => item.id === location.id)) {
       setWarning(`Location '${term}' is already in the list.`);
     } else {
       setLocations([location, ...locations]);
@@ -38,24 +34,17 @@ const App: FC = () => {
   return (
     <div className="container">
       <h1>Weather App</h1>
-<LocationSearch onSearch={addLocation}/>
-{
-        error
-          ? <div className={`alert alert-danger`}>{error}</div>
-          : null
-      }
-      {
-        warning
-          ? <div className={`alert alert-warning`}>{warning}</div>
-          : null
-      }
-<LocationTable locations={locations}
-current={currentLocation}
-onSelect={location => setCurrentLocation(location)}/>     
-<WeatherSummary location={currentLocation}/> 
-
+      <LocationSearch onSearch={addLocation} />
+      {error ? <div className={`alert alert-danger`}>{error}</div> : null}
+      {warning ? <div className={`alert alert-warning`}>{warning}</div> : null}
+      <LocationTable
+        locations={locations}
+        current={currentLocation}
+        onSelect={(location) => setCurrentLocation(location)}
+      />
+      <WeatherSummary location={currentLocation} />
     </div>
   );
-}
+};
 
 export default App;
